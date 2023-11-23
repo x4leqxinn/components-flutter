@@ -1,4 +1,5 @@
 import 'package:fl_components/router/app_routes.dart';
+import 'package:fl_components/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'screens/screens.dart';
 
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         initialRoute: AppRoutes.initialRoute,
-        routes: AppRoutes.routes,
-        onGenerateRoute: AppRoutes.onGenerateRoute);
+        routes: AppRoutes.getAppRoutes(),
+        onGenerateRoute: AppRoutes.onGenerateRoute,
+        theme: AppTheme.lightTheme // Se pueden hacer condionales para mostrar un tema u otro
+        );
   }
 }
 
