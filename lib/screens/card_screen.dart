@@ -12,7 +12,18 @@ class CardScreen extends StatelessWidget {
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          children: const [CustomCardType1(), CustomCardType2()],
+          children: const [
+            CustomCardType1(),
+            CustomCardType2(
+              name: 'Mona xina',
+              imageUrl:
+                  'https://animeushi.com/wp-content/uploads/2020/09/FlyMeToTheMoonCover-750x400.jpg',
+            ),
+            CustomCardType2(
+              imageUrl:
+                  'https://animeushi.com/wp-content/uploads/2020/09/FlyMeToTheMoonCover-750x400.jpg',
+            )
+          ],
         ));
   }
 }
