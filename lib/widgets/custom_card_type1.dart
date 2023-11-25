@@ -13,8 +13,8 @@ class CustomCardType1 extends StatelessWidget {
       children: [
         const ListTile(
           leading: Icon(Icons.photo_album_outlined, color: AppTheme.primary),
-          title: Text('Soy un titulo'),
-          subtitle: Text('Mona xina eskizofrenika uwu'),
+          title: Text('x4leqxinN'),
+          subtitle: Text('troyano apk'),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 5),
