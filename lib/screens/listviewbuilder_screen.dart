@@ -40,6 +40,14 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
         curve: Curves.fastOutSlowIn);
   }
 
+  Future<void> onRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+    final lastId = imagesIds.last;
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    add5();
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -67,20 +75,25 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
       removeBottom: true,
       child: Stack(
         children: [
-          ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              controller: scrollController,
-              itemCount: imagesIds.length,
-              itemBuilder: (BuildContext context, int index) {
-                return FadeInImage(
-                    width: double.infinity,
-                    height: 300,
-                    fit: BoxFit.cover,
-                    placeholder:
-                        const AssetImage('assets/loadings/jar-loading.gif'),
-                    image: NetworkImage(
-                        'https://picsum.photos/500/300?image?=${imagesIds[index]}'));
-              }),
+          RefreshIndicator(
+            // Existe el cupertino refresh indicator tb para IOS
+            color: AppTheme.primary,
+            onRefresh: onRefresh,
+            child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                controller: scrollController,
+                itemCount: imagesIds.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return FadeInImage(
+                      width: double.infinity,
+                      height: 300,
+                      fit: BoxFit.cover,
+                      placeholder:
+                          const AssetImage('assets/loadings/jar-loading.gif'),
+                      image: NetworkImage(
+                          'https://picsum.photos/500/300?image?=${imagesIds[index]}'));
+                }),
+          ),
           if (isLoading) // Mostrar icono solo si se estan cargando imagenes
             Positioned(
                 bottom: 40,
